@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "next/navigation";
-import CardPage from "@/components/CardPage";
+import CardPage from "@/app/cardpage/page";
 import { TopMenuType } from "@/components/User.Type";
-import Link from "next/link";
 import { Pagination } from "antd";
+import Link from "next/link";
 
 function TopMenu() {
   const [topMenu, setTopMenu] = useState<TopMenuType | null>(null);
@@ -63,7 +63,7 @@ function TopMenu() {
         <Pagination
           current={currentPage}
           total={topMenu.total}
-          pageSize={20}
+          pageSize={30}
           onChange={(page) => setCurrentPage(page)}
           className="text-center mt-4"
         />

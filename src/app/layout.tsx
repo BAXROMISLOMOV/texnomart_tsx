@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Cards from "@/components/Cards";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Nav />
-        {/* <TopCategories /> */}
+        <Cards/>
         {children}
       </body>
     </html>

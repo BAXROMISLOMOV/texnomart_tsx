@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import CardPage from "./CardPage";
+import CardPage from "../app/cardpage/page";
 import { cards } from "./User.Type";
 import Link from "next/link";
 
@@ -42,7 +42,7 @@ function Cards() {
       ) : products.length > 0 ? (
         <div className="grid grid-cols-5 gap-6">
           {products.map((item) => (
-            <Link href={`/product/${item.id}`} key={item.id}>
+            <Link href={`/CardPage/${item.id}`} key={item.id}>
               <CardPage item={item} />
             </Link>
           ))}

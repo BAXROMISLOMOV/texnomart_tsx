@@ -9,7 +9,7 @@ interface Category {
   image: string;
 }
 
-const Categories: React.FC = () => {
+const miniCategories: React.FC = () => {
   const [sections, setSections] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -78,4 +78,4 @@ const Categories: React.FC = () => {
   );
 };
 
-export default Categories;
+export default miniCategories;

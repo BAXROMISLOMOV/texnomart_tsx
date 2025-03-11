@@ -1,5 +1,5 @@
 import { Card } from "antd";
-import { CardPageType } from "./User.Type";
+import { CardPageType } from "../../components/User.Type";
 import Image from "next/image";
 
 function CardPage({ item }: CardPageType) {
