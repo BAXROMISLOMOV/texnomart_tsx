@@ -1,8 +1,8 @@
 export type CardPageType = {
-  item: Kards;
+  item: cards;
 };
 
-export type Kards = {
+export type cards = {
   id: number;
   name: string;
   image: string;
@@ -23,7 +23,7 @@ export type CarouselType = {
   image_mobile_web: string;
 }[];
 
-export type Product = Kards[];
+export type Product = cards[];
 
 export type TopMenuType = {
   total: number;

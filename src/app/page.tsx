@@ -1,11 +1,10 @@
-import Banner from "@/components/Banner";
-import Kardlar from "@/components/kardlar";
+import Cards from "@/components/Cards";
+
 
 function page() {
   return (
     <div className="container px-10 mx-auto">
-      <Banner />
-      <Kardlar />
+        <Cards/>
     </div>
   );
 }

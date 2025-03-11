@@ -12,62 +12,62 @@ function TopMenu() {
   const [topMenu, setTopMenu] = useState<TopMenuType | null>(null);
   const { slug } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!slug) return;
 
-    setLoading(true);
-
-    axios
-      .get(
-        `https://gw.texnomart.uz/api/common/v1/search/filters?category_all=${slug}&sort=-order_count&page=${currentPage}`
-      )
-      .then((response) => {
+    const fetchTopMenu = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await axios.get(
+          `https://gw.texnomart.uz/api/common/v1/search/filters?category_all=${slug}&sort=-order_count&page=${currentPage}`
+        );
         console.log("API response:", response.data);
-
-        if (response.data && response.data.data) {
-          setTopMenu(response.data.data);
-        } else {
-          setTopMenu(null);
-        }
-      })
-      .catch((error) => {
-        console.error("Xatolik yuz berdi:", error);
+        setTopMenu(response.data?.data || null);
+      } catch (err) {
+        console.error("Xatolik yuz berdi:", err);
+        setError("Xatolik yuz berdi, ma’lumot yuklanmadi");
         setTopMenu(null);
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchTopMenu();
   }, [slug, currentPage]);
 
-  if (!slug) return <p>Loading...</p>;
+  if (!slug) return <p className="text-center text-lg">Loading...</p>;
 
   return (
     <div className="px-10 mx-auto my-6">
       <div className="grid grid-cols-5 gap-6 container px-10 mx-auto mb-4">
         {loading ? (
-          <p>Yuklanmoqda...</p>
-        ) : topMenu && topMenu.products && topMenu.products.length > 0 ? (
+          <p className="text-center text-lg">Yuklanmoqda...</p>
+        ) : error ? (
+          <p className="text-center text-red-500">{error}</p>
+        ) : topMenu?.products?.length > 0 ? (
           topMenu.products.map((item) => (
             <Link href={`/product/${item.id}`} key={item.id}>
               <CardPage item={item} />
             </Link>
           ))
         ) : (
-          <p>Mahsulotlar topilmadi</p>
+          <p className="text-center text-gray-500">Mahsulotlar topilmadi</p>
         )}
       </div>
 
-      <Pagination
-        current={currentPage}
-        total={topMenu?.total || 0}
-        pageSize={20}
-        onChange={(page) => {
-          setCurrentPage(page);
-          setTopMenu(null);
-        }}
-      />
+      {topMenu?.total && topMenu.total > 0 && (
+        <Pagination
+          current={currentPage}
+          total={topMenu.total}
+          pageSize={20}
+          onChange={(page) => setCurrentPage(page)}
+          className="text-center mt-4"
+        />
+      )}
     </div>
   );
 }

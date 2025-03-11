@@ -16,8 +16,8 @@ function CardPage({ item }: CardPageType) {
           />
         </div>
         <div>
-          <p>{item.name}</p>
-          <h4>{item.sale_price}</h4>
+          <p className="text-center">{item.name}</p>
+          <h1 className=" text-center text-blue-600">{item.sale_price}</h1>
         </div>
       </Card>
     </div>
