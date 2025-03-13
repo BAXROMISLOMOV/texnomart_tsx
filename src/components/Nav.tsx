@@ -2,10 +2,6 @@ import React from "react";
 import Call from "../Icons/Call";
 import Global from "../Icons/global";
 import LocationIcon from "../Icons/LokationIcon";
-import Navsearch from "./Navsearch";
-import Corusel from "./Corusel";
-import Categories from "./minicards";
-import TopCategories from "./TopCategories";
 
 const Nav: React.FC = () => {
   return (
@@ -36,10 +32,7 @@ const Nav: React.FC = () => {
         </div>
       </div>
      
-       <Navsearch />
-       <TopCategories />
-       <Corusel/>
-     <Categories/>
+      
 
     </div>
   );

@@ -1,8 +1,11 @@
+import Corusel from "@/components/Corusel";
 import Nav from "@/components/Nav";
+import Navsearch from "@/components/Navsearch";
+import TopCategories from "@/components/TopCategories";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Categories from "../components/minicards";
 import "./globals.css";
-import Cards from "@/components/Cards";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +33,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Nav />
-        <Cards/>
+        <Navsearch />
+       <TopCategories />
+       <Corusel/>
+     <Categories/>
         {children}
       </body>
     </html>
